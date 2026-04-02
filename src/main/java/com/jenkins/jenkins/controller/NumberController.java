@@ -10,7 +10,7 @@ public class NumberController {
   @GetMapping("/number")
   @ResponseBody
   public String showNumber() {
-    int number = 42;
+    int number = 43;
     return "<html><body><h1>" + number + "</h1></body></html>";
   }
 }
