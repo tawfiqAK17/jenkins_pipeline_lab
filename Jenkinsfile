@@ -1,12 +1,35 @@
-properties([pipelineTriggers([githubPush()])])
-
 pipeline {
-    agent { label 'agent1' }
+    agent none
+
     stages {
-        stage('Test') {
+        stage('Compile') {
+            agent { label 'agent1' }
             steps {
-                sh 'echo hello23'
+                sh 'mvn clean compile'
             }
+        }
+
+        stage('Test') {
+            agent { label 'agent1' }
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('Deploy') {
+            agent { label 'agent1' }
+            steps {
+                sh 'mvn spring-boot:run &'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed!'
         }
     }
 }
