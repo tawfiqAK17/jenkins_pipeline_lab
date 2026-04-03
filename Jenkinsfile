@@ -28,7 +28,7 @@ pipeline {
             echo 'Pipeline failed!'
         }
         always {
-            mail to: 'akdirtawfiq@gmail.com',
+            mail to: 'tawfiqakdir@gmail.com',
                  subject: "Status: ${currentBuild.fullDisplayName}",
                  body: "Build ${env.BUILD_NUMBER} finished with ${currentBuild.currentResult}. View at ${env.BUILD_URL}"
         }
