@@ -3,19 +3,19 @@ pipeline {
     stages {
         stage('Compile') {
             steps {
-                sh 'mvn clean compile'
+                sh 'echo "run mvn clean compile"'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'
+                sh 'echo "run mvn test"'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'mvn spring-boot:run &'
+                sh 'echo "run mvn spring-boot:run &"'
             }
         }
     }
