@@ -1,5 +1,4 @@
 pipeline {
-
     agent { label 'agent1' }
     stages {
         stage('Compile') {
@@ -27,6 +26,11 @@ pipeline {
         }
         failure {
             echo 'Pipeline failed!'
+        }
+        always {
+            mail to: 'akdirtawfiq.com',
+                 subject: "Status: ${currentBuild.fullDisplayName}",
+                 body: "Build ${env.BUILD_NUMBER} finished with ${currentBuild.currentResult}. View at ${env.BUILD_URL}"
         }
     }
 }
